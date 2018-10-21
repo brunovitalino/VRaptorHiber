@@ -3,6 +3,8 @@
 
 ### Eclipse ###
 
+/src/main/webapp/WEB-INF/classes
+
 .metadata
 bin/
 tmp/

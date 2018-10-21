@@ -7,24 +7,24 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
 
 @Controller
-public class IndexController {
+public class LoginController {
 
 	private final Result result;
 
 	/**
 	 * @deprecated CDI eyes only
 	 */
-	protected IndexController() {
+	protected LoginController() {
 		this(null);
 	}
 	
 	@Inject
-	public IndexController(Result result) {
+	public LoginController(Result result) {
 		this.result = result;
 	}
 
-	@Path("/")
-	public void index() {
-		result.include("saudacao", "Bem vindo");
+	public void login() {
+		result.include("msg", "Preencha o campo.");
 	}
+	
 }

@@ -8,15 +8,13 @@
 <body>
 	<c:import url="header.jsp" />
 	
-	
 	<div>
 		${saudacao}!!
 	</div>
 	
 	<div>
-		<a href=${linkTo[IndexController].login}>Entrar</a>
+		<a href=${linkTo[LoginController].login}>Entrar</a>
 	</div>
-	
 	
 	<c:import url="footer.jsp" />
 </body>
