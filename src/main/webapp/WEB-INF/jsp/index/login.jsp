@@ -1,23 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home</title>
+<title>Entrar</title>
 </head>
 <body>
-	<c:import url="header.jsp" />
-	
-	
 	<div>
-		${saudacao}!!
+		<label for="usuario">Usuário:</label>
+		<input type="text" id="usuario">
 	</div>
-	
 	<div>
-		<a href=${linkTo[IndexController].login}>Entrar</a>
+		<label for="senha">Senha:</label>
+		<input type="text" id="senha">
 	</div>
-	
-	
-	<c:import url="footer.jsp" />
 </body>
 </html>

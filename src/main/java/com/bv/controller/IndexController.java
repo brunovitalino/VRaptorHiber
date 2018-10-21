@@ -1,4 +1,4 @@
-package br.com.caelum.vraptor.controller;
+package com.bv.controller;
 
 import javax.inject.Inject;
 
@@ -25,6 +25,10 @@ public class IndexController {
 
 	@Path("/")
 	public void index() {
+		result.include("saudacao", "Bem vindo");
+	}
+
+	public void login() {
 		result.include("variable", "VRaptor!");
 	}
 }
