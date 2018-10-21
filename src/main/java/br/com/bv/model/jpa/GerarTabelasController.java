@@ -7,7 +7,7 @@ public class GerarTabelasController {
 
 	public static void main(String[] args)
 	{
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("db_sqlserver");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("db_sqlserver"); // ou db_postgres
 		System.err.println("Database conectado.\n");
 		
 		factory.close();
