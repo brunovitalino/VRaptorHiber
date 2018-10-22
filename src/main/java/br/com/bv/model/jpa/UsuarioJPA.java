@@ -7,15 +7,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import br.com.bv.model.Enfermeiro;
 import br.com.bv.model.Usuario;
 
 
-public class EnfermeiroJPA {
+public class UsuarioJPA {
 	
 	EntityManagerFactory emf;
 	
-	public EnfermeiroJPA()
+	public UsuarioJPA()
 	{
 		this.emf = Persistence.createEntityManagerFactory("db_sqlserver"); // ou db_postgres
 		System.out.println("Database conectado!\n");
@@ -28,87 +27,110 @@ public class EnfermeiroJPA {
 		System.out.println("Database desconectado.\n");
 	}
 	
-	public List<Enfermeiro> findAll() {
+	public List<Usuario> findAll() {
 		EntityManager em = this.emf.createEntityManager();
 		String comandoJPQL = "";
-		List<Enfermeiro> enfermeiros;
+		List<Usuario> usuarios;
 		
 		comandoJPQL =	"SELECT u FROM Usuario AS u ";
 		
 		Query q = em.createQuery(comandoJPQL);
-		enfermeiros = q.getResultList();
+		usuarios = q.getResultList();
 		
 		em.close();
 		
-		return enfermeiros;
+		return usuarios;
 	}
 	
-	public Enfermeiro findOneById(Integer id) {
-		EntityManager em = this.emf.createEntityManager();
-		
-		em.getTransaction().begin();
-		// Enfermeiro sera pesquisado pelo id
-		Enfermeiro enfermeiro = em.find(Enfermeiro.class, id);
-		
-		em.close();
-		
-		return enfermeiro;
-	}
-	
-	public List<Enfermeiro> findAllByNome(String nome) {
+	public List<Usuario> findAllByNome(String nome) {
 		EntityManager em = this.emf.createEntityManager();
 		String comandoJPQL = "";
-		List<Enfermeiro> enfermeiros;
+		List<Usuario> usuarios;
 		
-		comandoJPQL =	"SELECT c FROM Enfermeiro AS c " +
-						"WHERE c.nome LIKE :paramNome";
+		comandoJPQL = "SELECT u FROM Usuario AS u "
+				+ "	WHERE u.nome LIKE :paramNome";
 		
 		Query q = em.createQuery(comandoJPQL);
 		nome = "%" + nome + "%";
 		q.setParameter("paramNome", nome);
-		enfermeiros = q.getResultList();
+		usuarios = q.getResultList();
 		
 		em.close();
 		
-		return enfermeiros;
+		return usuarios;
 	}
 	
-	public String save(Enfermeiro e) {
-		
+	public Usuario findOneById(Integer id) {
 		EntityManager em = this.emf.createEntityManager();
 		
 		em.getTransaction().begin();
-		// Cliente sera adicionado ao db
-		em.persist(e);
+		// Usuario sera pesquisado pelo id
+		Usuario usuario = em.find(Usuario.class, id);
+		
+		em.close();
+		
+		return usuario;
+	}
+	
+	public Usuario findOneByLogin(String login) {
+		EntityManager em = this.emf.createEntityManager();
+		String comandoJPQL = "";
+		List<Usuario> usuarios;
+		
+		comandoJPQL = "SELECT u FROM Usuario AS u "
+				+ "	WHERE u.login LIKE :paramLogin";
+		
+		Query q = em.createQuery(comandoJPQL);
+		q.setParameter("paramLogin", login);
+		usuarios = q.getResultList();
+		
+		Usuario usuario = null;
+		
+		if (usuarios.size() > 0)
+			usuario = usuarios.get(0);
+		
+		em.close();
+		
+		return usuario;
+	}
+	
+	public boolean save(Usuario u) {		
+		EntityManager em = this.emf.createEntityManager();
+		
+		em.getTransaction().begin();
+		// Usuario sera adicionado ao db
+		em.persist(u);
 		em.getTransaction().commit();
 		
 		em.close();
 		
-		return ("ID "+e.getId()+": " + e.getNome() + " adicionado com sucesso.");
+		return true;
 	}
 	
-	public void update(Enfermeiro e) {
+	public boolean update(Usuario u) {
 		EntityManager em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
-		em.merge(e);
+		em.merge(u);
 		em.getTransaction().commit();
 		
 		em.close();
+		
+		return true;
 	}
 	
-	public Enfermeiro remove(Integer id) {
+	public Usuario delete(Integer id) {
 		EntityManager em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
-		// Enfermeiro sera removido pelo id
-		Enfermeiro enfermeiro = em.find(Enfermeiro.class, id);
-		em.remove(enfermeiro);
+		// Usuario sera removido pelo id
+		Usuario usuario = em.find(Usuario.class, id);
+		em.remove(usuario);
 		em.getTransaction().commit();
 		
 		em.close();
 
-		return (enfermeiro);
+		return (usuario);
 	}
 
 }
