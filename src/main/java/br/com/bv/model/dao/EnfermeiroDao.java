@@ -1,4 +1,4 @@
-package br.com.bv.model.jpa;
+package br.com.bv.model.dao;
 
 import java.util.List;
 
@@ -11,11 +11,11 @@ import br.com.bv.model.Enfermeiro;
 import br.com.bv.model.Usuario;
 
 
-public class EnfermeiroJPA {
+public class EnfermeiroDao {
 	
-	EntityManagerFactory emf;
+	protected EntityManagerFactory emf;
 	
-	public EnfermeiroJPA()
+	public EnfermeiroDao()
 	{
 		this.emf = Persistence.createEntityManagerFactory("db_sqlserver"); // ou db_postgres
 		System.out.println("Database conectado!\n");

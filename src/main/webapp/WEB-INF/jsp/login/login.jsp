@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap/bootstrap.css"/>">
+	<link rel="stylesheet" href="<c:url value="/css/bootstrap/bootstrap.css"/>">
 	<style type="text/css">
 		.jumbotron {
 			width: 400px;
@@ -37,6 +37,8 @@
 	<div class="jumbotron">
 		<div class="container">
 			<form>
+			<fieldset>
+			<legend>Acesso</legend>
 				<div class="form-group">
 					<div class="row">
 						<div class="col-md-2">
@@ -49,13 +51,14 @@
 					
 					<div class="row">
 						<div class="col-md-2">
-							<label><h5>Senha2</h5></label>
+							<label><h5>Senha</h5></label>
 						</div>
 						<div class="col-md-10">
 						</div>
 					</div>
 					<input type="password" class="form-control"/>
 				</div>
+			</fieldset>
 			</form>
 		<button class="btn btn-block btn-primary">Entrar</button>
 		</div>

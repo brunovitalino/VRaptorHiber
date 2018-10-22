@@ -6,7 +6,9 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,7 +20,8 @@ public class Enfermeiro
 {
 	@Column
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="ENFERMEIRO_SEQ")
+	@SequenceGenerator(name="ENFERMEIRO_SEQ", sequenceName="ENFERMEIRO_SEQ", allocationSize=1)
 	private int id;
 	
 	@Column(length=25, nullable=false)

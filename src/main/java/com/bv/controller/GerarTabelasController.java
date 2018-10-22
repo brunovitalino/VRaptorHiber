@@ -1,16 +1,16 @@
 package com.bv.controller;
 
 import br.com.bv.model.Usuario;
-import br.com.bv.model.jpa.UsuarioJPA;
+import br.com.bv.model.dao.UsuarioDao;
 
 public class GerarTabelasController {
 
 	public static void main(String[] args)
 	{
 		Usuario usuario;
-		UsuarioJPA usuarioJPA;
+		UsuarioDao usuarioJPA;
 		
-		usuarioJPA = new UsuarioJPA();		
+		usuarioJPA = new UsuarioDao();		
 		usuario = usuarioJPA.findOneByLogin("admin");
 		
 		// Caso o usuario nao exista, ele sera cadastrado.

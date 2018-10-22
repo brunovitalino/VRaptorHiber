@@ -1,4 +1,4 @@
-package br.com.bv.model.jpa;
+package br.com.bv.model.dao;
 
 import java.util.List;
 
@@ -9,12 +9,11 @@ import javax.persistence.Query;
 
 import br.com.bv.model.Usuario;
 
-
-public class UsuarioJPA {
+public class UsuarioDao {
 	
-	EntityManagerFactory emf;
+	protected EntityManagerFactory emf;
 	
-	public UsuarioJPA()
+	public UsuarioDao()
 	{
 		this.emf = Persistence.createEntityManagerFactory("db_sqlserver"); // ou db_postgres
 		System.out.println("Database conectado!\n");
@@ -32,9 +31,9 @@ public class UsuarioJPA {
 		String comandoJPQL = "";
 		List<Usuario> usuarios;
 		
-		comandoJPQL =	"SELECT u FROM Usuario AS u ";
+		//comandoJPQL =	"SELECT u FROM Usuario AS u ";
 		
-		Query q = em.createQuery(comandoJPQL);
+		Query q = em.createQuery("FROM Usuario");
 		usuarios = q.getResultList();
 		
 		em.close();
